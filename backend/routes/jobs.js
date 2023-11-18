@@ -14,8 +14,7 @@ const jobSearchSchema = require("../schemas/jobSearch.json");
 
 const router = express.Router({ mergeParams: true });
 
-
-/** POST / { job } => { job }
+/** POST /jobs { job } => {id, title, salary, equity, companyHandle }
  *
  * job should be { title, salary, equity, companyHandle }
  *
@@ -28,7 +27,7 @@ router.post("/", ensureAdmin, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, jobNewSchema);
     if (!validator.valid) {
-      const errs = validator.errors.map(e => e.stack);
+      const errs = validator.errors.map((e) => e.stack);
       throw new BadRequestError(errs);
     }
 
@@ -39,7 +38,7 @@ router.post("/", ensureAdmin, async function (req, res, next) {
   }
 });
 
-/** GET / =>
+/** GET /jobs =>
  *   { jobs: [ { id, title, salary, equity, companyHandle, companyName }, ...] }
  *
  * Can provide search filter in query:
@@ -59,7 +58,7 @@ router.get("/", async function (req, res, next) {
   try {
     const validator = jsonschema.validate(q, jobSearchSchema);
     if (!validator.valid) {
-      const errs = validator.errors.map(e => e.stack);
+      const errs = validator.errors.map((e) => e.stack);
       throw new BadRequestError(errs);
     }
 
@@ -70,7 +69,7 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-/** GET /[jobId] => { job }
+/** GET /jobs/[jobId] => { job }
  *
  * Returns { id, title, salary, equity, company }
  *   where company is { handle, name, description, numEmployees, logoUrl }
@@ -87,10 +86,9 @@ router.get("/:id", async function (req, res, next) {
   }
 });
 
-
-/** PATCH /[jobId]  { fld1, fld2, ... } => { job }
+/** PATCH /jobs/[jobId]  { title*, fld1, fld2, ... } => { job } *data must include 'title'
  *
- * Data can include: { title, salary, equity }
+ * Data can include: { title*, salary, equity, company }
  *
  * Returns { id, title, salary, equity, companyHandle }
  *
@@ -101,7 +99,7 @@ router.patch("/:id", ensureAdmin, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, jobUpdateSchema);
     if (!validator.valid) {
-      const errs = validator.errors.map(e => e.stack);
+      const errs = validator.errors.map((e) => e.stack);
       throw new BadRequestError(errs);
     }
 
@@ -112,7 +110,7 @@ router.patch("/:id", ensureAdmin, async function (req, res, next) {
   }
 });
 
-/** DELETE /[handle]  =>  { deleted: id }
+/** DELETE /jobs/[handle]  =>  { deleted: id }
  *
  * Authorization required: admin
  */
@@ -125,6 +123,5 @@ router.delete("/:id", ensureAdmin, async function (req, res, next) {
     return next(err);
   }
 });
-
 
 module.exports = router;

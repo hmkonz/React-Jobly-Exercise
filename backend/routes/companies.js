@@ -15,8 +15,7 @@ const companySearchSchema = require("../schemas/companySearch.json");
 
 const router = new express.Router();
 
-
-/** POST / { company } =>  { company }
+/** POST /companies  {company} =>  { company }
  *
  * company should be { handle, name, description, numEmployees, logoUrl }
  *
@@ -29,7 +28,7 @@ router.post("/", ensureAdmin, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, companyNewSchema);
     if (!validator.valid) {
-      const errs = validator.errors.map(e => e.stack);
+      const errs = validator.errors.map((e) => e.stack);
       throw new BadRequestError(errs);
     }
 
@@ -40,7 +39,7 @@ router.post("/", ensureAdmin, async function (req, res, next) {
   }
 });
 
-/** GET /  =>
+/** GET /companies  =>
  *   { companies: [ { handle, name, description, numEmployees, logoUrl }, ...] }
  *
  * Can filter on provided search filters:
@@ -60,7 +59,7 @@ router.get("/", async function (req, res, next) {
   try {
     const validator = jsonschema.validate(q, companySearchSchema);
     if (!validator.valid) {
-      const errs = validator.errors.map(e => e.stack);
+      const errs = validator.errors.map((e) => e.stack);
       throw new BadRequestError(errs);
     }
 
@@ -71,7 +70,7 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-/** GET /[handle]  =>  { company }
+/** GET /companies/[handle]  =>  { company }
  *
  *  Company is { handle, name, description, numEmployees, logoUrl, jobs }
  *   where jobs is [{ id, title, salary, equity }, ...]
@@ -88,7 +87,7 @@ router.get("/:handle", async function (req, res, next) {
   }
 });
 
-/** PATCH /[handle] { fld1, fld2, ... } => { company }
+/** PATCH /companies/[handle] { fld1, fld2, ... } => { company }
  *
  * Patches company data.
  *
@@ -103,7 +102,7 @@ router.patch("/:handle", ensureAdmin, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, companyUpdateSchema);
     if (!validator.valid) {
-      const errs = validator.errors.map(e => e.stack);
+      const errs = validator.errors.map((e) => e.stack);
       throw new BadRequestError(errs);
     }
 
@@ -114,7 +113,7 @@ router.patch("/:handle", ensureAdmin, async function (req, res, next) {
   }
 });
 
-/** DELETE /[handle]  =>  { deleted: handle }
+/** DELETE /companies/[handle]  =>  { deleted: handle }
  *
  * Authorization: admin
  */
@@ -127,6 +126,5 @@ router.delete("/:handle", ensureAdmin, async function (req, res, next) {
     return next(err);
   }
 });
-
 
 module.exports = router;
