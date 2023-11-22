@@ -4,7 +4,7 @@
     height: 100vh;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .LoginForm form {
@@ -12,12 +12,13 @@
     background-color: lightgray;
     padding: 50px;
     border-radius: 5px;
-    margin-top: -150px;
+    margin-bottom: 200px;
 }
 
 .LoginForm form div {
     padding: 15px;
     vertical-align: middle;
+    color: rgb(112, 55, 245);
 }
 
 #username #password {
@@ -27,8 +28,7 @@
 
 h1 {
     color: rgb(112, 55, 245);
-    margin-right: 600px;
-    margin-top: 10px;
+    margin-left: 550px;  
 }
 
 input {

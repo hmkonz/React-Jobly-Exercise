@@ -1,7 +1,11 @@
 /* locates search input box on the page */
 .form-inline {
-  margin-right: 345px;
+  display: flex;
+  margin-left: 200px;
   margin-top: 40px;
+  padding-top: 10px;
+  padding-bottom: 40px;
+  width: 900px;
 }
 
 /* styles the input box (height, width and border radius */
@@ -19,16 +23,10 @@
   height: 47px;
   color: white;
   font-size: 25px;
-  padding-bottom: 10px;
-  padding-right: 10px;
-  padding-left: 10px;
-  padding-top: 5px;
   border: none;
-  margin-left: 1000px;
-  margin-top: -100px;
 }
 
-/* stles the placehold text color and font-size */
+/* styles the placeholder text color and font-size */
 ::placeholder {
   color:rgb(112, 55, 245);
   font-size: 20px;

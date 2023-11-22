@@ -9,7 +9,7 @@ function Home() {
   return (
     <div className="Homepage">
       <div className="container text-center">
-        <h1 className="mb-4 font-weight-bold">Jobly</h1>
+        <h1 className="title">Jobly</h1>
         <p className="header">All the jobs in one, convenient place!</p>
         {/* if piece of state 'currentUser' (kept track of in App component) is not null (user is logged in) show Welcome Back message; otherwise, show login and signup links in the nav bar */}
         {currentUser ? (

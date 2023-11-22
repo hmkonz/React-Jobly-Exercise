@@ -27,7 +27,6 @@
 .nav-link.active {
   color:  rgb(6, 6, 252);
   font-weight: bold; 
-  /* box-sizing: border-box; */
 }  
  
 .nav-link:hover {

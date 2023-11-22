@@ -35,10 +35,10 @@ function SearchForm({ search }) {
     setSearchInput(value);
   }
   return (
-    <div className="SearchForm mb-4">
+    <div>
       <form className="form-inline" onSubmit={handleSubmit}>
         <input
-          className="form-control form-control-lg flex-grow-1"
+          className="form-control"
           type="text"
           name="searchTerm"
           value={searchTerm}

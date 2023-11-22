@@ -19,6 +19,10 @@ h1 {
   color: rgb(112, 55, 245);
 }
 
+.title {
+  margin-left: 600px;
+}
+
 .header { 
     color: rgb(112, 55, 245);
     font-size: 20px;
